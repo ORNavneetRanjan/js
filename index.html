@@ -3,13 +3,132 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="./main.js"></script>
-    <title>Document</title>
+    <title>Aditya Jaiswal's Profile | Club Membership</title>
+    <style>
+      :root {
+        --primary: #4a6fa5;
+        --secondary: #166088;
+        --success: #28a745;
+        --danger: #dc3545;
+        --light: #f8f9fa;
+        --dark: #343a40;
+      }
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f5f5f5;
+        margin: 0;
+        padding: 0;
+        color: #333;
+      }
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+      .success-banner {
+        background-color: #e8f5e9;
+        color: var(--success);
+        padding: 15px;
+        border-radius: 5px;
+        margin-bottom: 20px;
+        border-left: 5px solid var(--success);
+        font-weight: bold;
+      }
+      .profile-card {
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        padding: 30px;
+        text-align: center;
+      }
+      .profile-pic {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 5px solid var(--primary);
+        margin: 0 auto 20px;
+      }
+      .profile-name {
+        font-size: 28px;
+        margin: 10px 0;
+        color: var(--secondary);
+      }
+      .profile-detail {
+        font-size: 18px;
+        margin: 10px 0;
+        color: #555;
+      }
+      .logout-btn {
+        background-color: var(--danger);
+        color: white;
+        border: none;
+        padding: 10px 25px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        margin-top: 20px;
+      }
+      .logout-btn:hover {
+        background-color: #c82333;
+      }
+      .nav {
+        background-color: var(--dark);
+        padding: 15px 20px;
+        color: white;
+        margin-bottom: 30px;
+        display: flex;
+        justify-content: space-between;
+      }
+      .nav a {
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+      }
+    </style>
   </head>
   <body>
-    <h1>TO do App</h1>
-    <h3>Enter "list" to show all tasks</h3>
-    <h3>Enter "add" to add a task</h3>
-    <h3>Enter "delete" to show all tasks</h3>
+    <div class="nav">
+      <a href="#" class="brand">Club A Membership</a>
+      <a href="#" class="logout-btn" onclick="logout()">Logout</a>
+    </div>
+
+    <div class="container">
+      <div class="success-banner">
+        ✔ Successfully logged in as Aditya Jaiswal (7992280324)
+      </div>
+
+      <div class="profile-card">
+        <img
+          src="https://ui-avatars.com/api/?name=Aditya+Jaiswal&size=150&background=4a6fa5&color=fff"
+          alt="Aditya Jaiswal"
+          class="profile-pic"
+        />
+
+        <h1 class="profile-name">Aditya Jaiswal</h1>
+
+        <div class="profile-detail">
+          <strong>Mobile:</strong> +91 7992280324
+        </div>
+
+        <div class="profile-detail">
+          <strong>Member Since:</strong> April 2024
+        </div>
+
+        <div class="profile-detail">
+          <strong>Membership Status:</strong> Active
+        </div>
+
+        <button class="logout-btn" onclick="logout()">Logout</button>
+      </div>
+    </div>
+
+    <script>
+      function logout() {
+        alert("Aditya Jaiswal has been successfully logged out.");
+        // In a real application, this would redirect to login page
+        // window.location.href = "login.html";
+      }
+    </script>
   </body>
 </html>
