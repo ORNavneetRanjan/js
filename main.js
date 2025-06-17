@@ -166,10 +166,26 @@ const arr = [
 // );
 // console.log("this is new array: ", arr);
 
-console.log(arr.every((ele) => ele.marks % 10 == 0));
-console.log(
-  arr.reduce((result, element) => {
-    if (result > element.marks) return element.marks;
-    return result;
-  }, 1000)
-);
+// console.log(arr.every((ele) => ele.marks % 10 == 0));
+// console.log(
+//   arr.reduce((result, element) => {
+//     if (result > element.marks) return element.marks;
+//     return result;
+//   }, 1000)
+// );
+
+// console.log(...arr);
+// console.log(..."Navneet Ranjan");
+
+// let odd = [1, 5, 3];
+// let even = [2, 4, 6];
+// let nums = [...odd, ...even];
+// console.log(nums);
+
+function func(name, ...args) {
+  console.log(
+    name,
+    args.reduce((sum, el) => sum + el)
+  );
+}
+func("Navneet", 1, 2, 3, 4, 5, 8);
