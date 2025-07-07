@@ -182,10 +182,16 @@ const arr = [
 // let nums = [...odd, ...even];
 // console.log(nums);
 
-function func(name, ...args) {
-  console.log(
-    name,
-    args.reduce((sum, el) => sum + el)
-  );
-}
-func("Navneet", 1, 2, 3, 4, 5, 8);
+// function func(name, ...args) {
+//   console.log(
+//     name,
+//     args.reduce((sum, el) => sum + el)
+//   );
+// }
+// func("Navneet", 1, 2, 3, 4, 5, 8);
+
+let [first, second, third] = arr;
+console.log(first, second, third);
+let [fourth, fifth, ...others] = arr;
+console.log(fourth, fifth, others);
+console.log(typeof others);
