@@ -17,4 +17,8 @@ for (let i = 0; i < element.length; i++) {
   element[i].style = "text-decoration:none; color: red;";
 }
 
-console.dir(document.querySelectorAll("a"));
+let heading = document.querySelector("h1");
+heading.innerHTML = `<u>${heading.innerText}</u>`;
+console.dir(document.querySelector("p").textContent);
+console.log("\n\n", document.querySelector("p").innerText);
+console.log("\n\n", document.querySelector("p").innerHTML);
