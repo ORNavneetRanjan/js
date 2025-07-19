@@ -19,6 +19,18 @@ for (let i = 0; i < element.length; i++) {
 
 let heading = document.querySelector("h1");
 heading.innerHTML = `<u>${heading.innerText}</u>`;
-console.dir(document.querySelector("p").textContent);
-console.log("\n\n", document.querySelector("p").innerText);
-console.log("\n\n", document.querySelector("p").innerHTML);
+// console.dir(document.querySelector("p").textContent);
+// console.log("\n\n", document.querySelector("p").innerText);
+// console.log("\n\n", document.querySelector("p").innerHTML);
+
+let object = document.querySelector("img");
+console.log(object.getAttribute("src"));
+object.setAttribute(
+  "src",
+  "https://image.api.playstation.com/vulcan/ap/rnd/202011/0402/C784xeOFo2wViCf4m5bxgoeH.png"
+);
+
+let styleManipulation = document.querySelectorAll(".box a");
+for (obj of styleManipulation) {
+  obj.style.backgroundColor = "blue"; //converted into camel case
+}
