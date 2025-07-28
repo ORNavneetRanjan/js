@@ -18,7 +18,7 @@ for (let i = 0; i < element.length; i++) {
 }
 
 let heading = document.querySelector("h1");
-heading.innerHTML = `<u>${heading.innerText}</u>`;
+// heading.innerHTML = `<u>${heading.innerText}</u>`;
 // console.dir(document.querySelector("p").textContent);
 // console.log("\n\n", document.querySelector("p").innerText);
 // console.log("\n\n", document.querySelector("p").innerHTML);
@@ -34,3 +34,12 @@ let styleManipulation = document.querySelectorAll(".box a");
 for (obj of styleManipulation) {
   obj.style.backgroundColor = "blue"; //converted into camel case
 }
+console.log("start");
+console.log(heading.classList);
+heading.classList.add("green", "styleLine");
+console.log("add");
+console.log(heading.classList);
+console.log("remove");
+heading.classList.remove("green");
+console.log(heading.classList.contains("green"));
+console.log(heading.classList.toggle("green"));

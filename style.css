@@ -26,3 +26,13 @@ body {
 #description {
   background-color: antiquewhite;
 }
+
+.green {
+  background-color: green;
+}
+
+.styleLine {
+  font-family: "Times New Roman", Times, serif;
+  text-decoration: underline purple wavy 2px;
+  font-size: xx-large;
+}
