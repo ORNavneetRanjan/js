@@ -34,12 +34,38 @@ let styleManipulation = document.querySelectorAll(".box a");
 for (obj of styleManipulation) {
   obj.style.backgroundColor = "blue"; //converted into camel case
 }
-console.log("start");
-console.log(heading.classList);
-heading.classList.add("green", "styleLine");
-console.log("add");
-console.log(heading.classList);
-console.log("remove");
-heading.classList.remove("green");
-console.log(heading.classList.contains("green"));
-console.log(heading.classList.toggle("green"));
+// console.log("start");
+// console.log(heading.classList);
+// heading.classList.add("green", "styleLine");
+// console.log("add");
+// console.log(heading.classList);
+// console.log("remove");
+// heading.classList.remove("green");
+// console.log(heading.classList.contains("green"));
+// console.log(heading.classList.toggle("green"));
+
+console.log(heading.parentElement);
+let ul = document.querySelector("ul");
+// console.log(ul.children);
+// console.log(ul.childElementCount);
+
+// console.log(heading.parentElement);
+// console.log(ul.children[0].nextElementSibling);
+ul.children[0].nextElementSibling.style = "background-color: red";
+ul.children[1].previousElementSibling.style =
+  "text-decoration: underline green wavy 2px";
+
+let ele = document.createElement("p");
+ele.innerHTML = "<a href='#'>Hi my name is Navneet Ranjan</a>";
+ele.classList.add("green", "styleLine");
+let body = document.querySelector("body");
+body.appendChild(ele);
+
+let box = document.querySelector(".box");
+box.appendChild(ele);
+
+let btn = document.createElement("button");
+btn.innerText = "this is me";
+ele.append(btn, "hellow this is me Navneet");
+ele.prepend(btn, "how are you");
+box.insertAdjacentElement("afterbegin", ele);
