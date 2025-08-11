@@ -68,4 +68,32 @@ let btn = document.createElement("button");
 btn.innerText = "this is me";
 ele.append(btn, "hellow this is me Navneet");
 ele.prepend(btn, "how are you");
-box.insertAdjacentElement("afterbegin", ele);
+console.log(box.children);
+
+btn.onclick = function () {
+  alert(`the button "${btn.innerText}" is clicked`);
+};
+box.removeChild(ele);
+
+// event handelling
+function handleClick(event) {
+  alert(`The button "${event.target.innerHTML}" is clicked`);
+}
+
+function handleMouseEnter(event) {
+  let str = event.target.innerHTML;
+  console.log(str);
+  event.target.innerText = "hello world";
+}
+let buttonList = document.querySelectorAll(".button button");
+console.log(buttonList);
+for (butt of buttonList) {
+  // butt.onclick = handleClick;
+  // butt.onmouseenter = handleMouseEnter;
+  //butt.addEventListener("click", handleClick);
+  butt.addEventListener("dblclick", handleMouseEnter);
+}
+let p = document.querySelector("p");
+p.addEventListener("click", function () {
+  console.log(this.innerText);
+});
