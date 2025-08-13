@@ -94,6 +94,16 @@ for (butt of buttonList) {
   butt.addEventListener("dblclick", handleMouseEnter);
 }
 let p = document.querySelector("p");
-p.addEventListener("click", function () {
-  console.log(this.innerText);
-});
+// p.addEventListener("click", function () {
+//   console.log(this.innerText);
+// });
+
+function changeColor(event) {
+  this.style.backgroundColor = "red";
+  console.log(event.target.value);
+}
+
+//p.addEventListener("click", changeColor);
+
+let input = document.querySelector("input");
+input.addEventListener("keydown", changeColor);

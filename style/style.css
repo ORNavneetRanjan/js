@@ -36,3 +36,10 @@ body {
   text-decoration: underline purple wavy 2px;
   font-size: xx-large;
 }
+
+input {
+  margin-top: 10px;
+  width: auto;
+  height: 20px;
+  font-family: "Courier New", Courier, monospace;
+}
