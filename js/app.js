@@ -27,7 +27,7 @@ let object = document.querySelector("img");
 console.log(object.getAttribute("src"));
 object.setAttribute(
   "src",
-  "https://image.api.playstation.com/vulcan/ap/rnd/202011/0402/C784xeOFo2wViCf4m5bxgoeH.png"
+  "https://image.api.playstation.com/vulcan/ap/rnd/202011/0402/C784xeOFo2wViCf4m5bxgoeH.png",
 );
 
 let styleManipulation = document.querySelectorAll(".box a");
@@ -100,10 +100,32 @@ let p = document.querySelector("p");
 
 function changeColor(event) {
   this.style.backgroundColor = "red";
+  console.log(`Key code: ${event.code}`);
+  console.log(`Key: ${event.key}`);
   console.log(event.target.value);
+  console.log(event);
 }
 
 //p.addEventListener("click", changeColor);
 
 let input = document.querySelector("input");
 input.addEventListener("keydown", changeColor);
+
+let form = document.querySelector("form");
+form.addEventListener("submit", (event) => {
+  event.preventDefault();
+  console.log(event.target);
+  alert(`The form is submitted 
+      your email is ${event.target[0].value} 
+    `);
+});
+
+let changeEvent = document.querySelector("#MoreEvent input[type='text']");
+changeEvent.addEventListener("change", (event) => {
+  console.log(`Change event: ${event.target.value}`);
+});
+
+let inputEvent = document.querySelector("#MoreEvent input[type='number']");
+inputEvent.addEventListener("input", (event) => {
+  console.log(`Input event: ${event.target.value}`);
+});
