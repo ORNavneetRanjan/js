@@ -1,0 +1,59 @@
+body {
+  background: #373030;
+}
+#todo {
+  background-color: orange;
+  height: 200px;
+  width: 400px;
+}
+
+ul {
+  background-color: green;
+}
+
+li {
+  background-color: yellow;
+  display: flex;
+  justify-content: space-between;
+}
+
+#Game {
+  text-align: center;
+  background-color: rgb(237, 203, 230);
+}
+
+.btn {
+  height: 200px;
+  width: 200px;
+  border-radius: 20%;
+  border: 1px solid black;
+  margin-bottom: 20px;
+}
+
+.btn-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  height: 100vh;
+  gap: 20px;
+}
+
+.red {
+  background: rgb(247, 80, 80);
+}
+
+.green {
+  background: rgb(125, 244, 125);
+}
+
+.yellow {
+  background-color: rgb(241, 241, 63);
+}
+
+.blue {
+  background: rgb(103, 103, 231);
+}
+
+.flash {
+  background-color: white;
+}
