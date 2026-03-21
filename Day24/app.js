@@ -51,25 +51,74 @@ taskList.addEventListener("click", (event) => {
 });
 
 let start = false;
+let sequence = [];
+let userSequence = [];
+let level = 0;
+let index = 0;
+let score = 0;
+
 const simonSays = () => {
-  let level = 1;
-  let sequence = [];
-  let userSequence = [];
-  while (start) {
-    document.querySelector("h2").innerText = `Level: ${level}`;
-    //random button flash
-    let randomBtn = Math.floor(Math.random() * 4);
-    buttonFlash(document.querySelectorAll(".btn")[randomBtn]);
-    sequence.push(randomBtn);
-    break;
-  }
+  start = true;
+  levelUp();
 };
 
-function buttonFlash(btn) {
-  btn.classList.add("flash");
+for (btn of document.querySelectorAll(".btn")) {
+  btn.addEventListener("click", function () {
+    btnPress(this);
+  });
+}
+
+function levelUp() {
+  userSequence = [];
+  level++;
+  document.querySelector("h2").innerText = `Level: ${level}`;
+  //random button flash
+  let randomBtn = Math.floor(Math.random() * 4);
+  buttonFlash(document.querySelectorAll(".btn")[randomBtn], "flash");
+  sequence.push(randomBtn);
+  console.dir(sequence);
+}
+
+function buttonFlash(btn, flashType) {
+  btn.classList.add(flashType);
   setTimeout(() => {
-    btn.classList.remove("flash");
+    btn.classList.remove(flashType);
   }, 250);
+}
+
+function btnPress(btn) {
+  if (!start) return;
+  buttonFlash(btn, "userFlash");
+  let userBtnIndex = [...document.querySelectorAll(".btn")].indexOf(btn);
+  userSequence.push(userBtnIndex);
+  checkAns();
+}
+
+function checkAns() {
+  if (userSequence[index] == sequence[index]) {
+    index++;
+    score++;
+    if (index == level) {
+      index = 0;
+      setTimeout(levelUp, 800);
+    }
+  } else {
+    start = false;
+    document.querySelector("h2").innerHTML =
+      `!! Game Over !!, Final Score:<b> ${score}</b>. Press any key to start`;
+
+    let gameDiv = document.querySelector("#Game");
+    gameDiv.style.backgroundColor = "red";
+    setTimeout(() => {
+      gameDiv.style.backgroundColor = "pink"; // original color
+    }, 200);
+
+    sequence = [];
+    userSequence = [];
+    level = 0;
+    index = 0;
+    score = 0;
+  }
 }
 
 document.addEventListener("keypress", () => {

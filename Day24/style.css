@@ -57,3 +57,7 @@ li {
 .flash {
   background-color: white;
 }
+
+.userFlash {
+  background-color: rgb(250, 248, 250);
+}
