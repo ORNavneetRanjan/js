@@ -10,7 +10,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@types/node": "^25.9.1",
     "figlet": "^1.11.0"
-  },
-  "type": "module"
+  }
 }
