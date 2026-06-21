@@ -1,7 +1,10 @@
+const dotenv = require("dotenv");
 const express = require("express");
 const { error } = require("node:console");
 const { router } = require("./routes/books.routes");
 const { middleware } = require("./middleware/middleware");
+
+dotenv.config();
 const app = express();
 const PORT = 8000;
 
