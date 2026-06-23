@@ -1,11 +1,24 @@
 const db = require("../db/index");
 const { booksTable } = require("../models/book.model");
 const { authorTable } = require("../models/author.model");
-const { eq, desc } = require("drizzle-orm");
+const { eq, desc, ilike, sql } = require("drizzle-orm");
 
 const getAllBooks = async (req, res) => {
   res.setHeader("x-piy", "Navneet Ranjan");
-  const books = await db.select().from(booksTable);
+  const search = req.query.search;
+  let books;
+
+  if (search) {
+    books = await db
+      .select()
+      .from(booksTable)
+      .where(
+        sql`to_tsvector('english', ${booksTable.title}) @@ plainto_tsquery('english', ${search})`,
+      );
+    return res.json(books);
+  }
+
+  books = await db.select().from(booksTable);
   return res.json(books);
 };
 
@@ -15,7 +28,11 @@ const getBookById = async (req, res) => {
   if (isNaN(id))
     return res.status(400).json({ error: `id must be of type number` });
 
-  const book = await db.select().from(booksTable).where(eq(booksTable.id, id));
+  const book = await db
+    .select()
+    .from(booksTable)
+    .where(eq(booksTable.id, id))
+    .leftJoin(authorTable, eq(booksTable.authorId, authorTable.id));
 
   if (book.length === 0) {
     return res
