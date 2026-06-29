@@ -1,10 +1,37 @@
 import { eq } from "drizzle-orm";
-import db from "../db/index..js";
+import db from "../db/index.js";
 import { userSession, usersTable } from "../db/schema.js";
 import { randomBytes, createHmac } from "crypto";
+import { error } from "console";
+
 export async function users(req, res) {
-  const data = await db.select().from(usersTable);
-  return res.json({ data: data });
+  const user = req.user;
+  if (!user) return res.status(401).json({ error: `Session expired` });
+  return res.json({ user });
+}
+
+export async function updateUserName(req, res) {
+  const user = req.user;
+  if (!user) return res.status(401).json({ error: `Session expired` });
+
+  const { name } = req.body;
+  console.log(`name: ${name}, user: ${user.userId}`);
+  if (!name)
+    return res.status(400).json({ error: `Please provide a valid name` });
+
+  const response = await db
+    .update(usersTable)
+    .set({ name })
+    .where(eq(usersTable.id, user.userId))
+    .returning({
+      id: usersTable.id,
+      name: usersTable.name,
+    });
+
+  console.log(response);
+  return res
+    .status(201)
+    .json({ message: `Name updated to ${name} for userId: ${response[0].id}` });
 }
 
 export async function usersLogin(req, res) {
