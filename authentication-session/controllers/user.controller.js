@@ -3,9 +3,11 @@ import db from "../db/index.js";
 import { userSession, usersTable } from "../db/schema.js";
 import { randomBytes, createHmac } from "crypto";
 import { error } from "console";
+import jwt from "jsonwebtoken";
 
 export async function users(req, res) {
   const user = req.user;
+  console.log(`${user}`);
   if (!user) return res.status(401).json({ error: `Session expired` });
   return res.json({ user });
 }
@@ -41,6 +43,7 @@ export async function usersLogin(req, res) {
       id: usersTable.id,
       email: usersTable.email,
       salt: usersTable.salt,
+      name: usersTable.name,
       password: usersTable.password,
     })
     .from(usersTable)
@@ -56,14 +59,14 @@ export async function usersLogin(req, res) {
     return res.status(400).json({ error: `Incorrect password` });
   }
 
-  const [session] = await db
-    .insert(userSession)
-    .values({
-      userId: isEmailExits[0].id,
-    })
-    .returning({ id: userSession.id });
+  const payload = {
+    id: isEmailExits[0].id,
+    email: isEmailExits[0].email,
+    name: isEmailExits[0].name,
+  };
+  const token = jwt.sign(payload, process.env.JWT_SECRET);
 
-  return res.json({ status: "success", sessionId: session.id });
+  return res.json({ status: "success", token });
 }
 
 export async function usersSignUp(req, res) {

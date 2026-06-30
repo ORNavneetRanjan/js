@@ -1,25 +1,32 @@
 import { eq } from "drizzle-orm";
 import db from "../db/index.js";
 import { userSession, usersTable } from "../db/schema.js";
+import jwt from "jsonwebtoken";
 
 export async function getUser(req, res, next) {
-  const sessionId = req.headers["session-id"];
+  const tokenHeader = req.get("Authorization");
 
-  if (!sessionId) return next();
-  const [user] = await db
-    .select({
-      id: userSession.id,
-      userId: userSession.userId,
-      name: usersTable.name,
-      email: usersTable.email,
-    })
-    .from(userSession)
-    .rightJoin(usersTable, eq(userSession.userId, usersTable.id))
-    .where(eq(userSession.id, sessionId));
+  if (!tokenHeader) {
+    return next();
+  }
 
-  console.log(`user: ${user.name}`);
+  if (!tokenHeader.startsWith("Bearer ")) {
+    return res.status(400).json({
+      error: "Authorization header must start with 'Bearer '",
+    });
+  }
 
-  if (!user) return next();
-  req.user = user;
-  next();
+  const token = tokenHeader.split(" ")[1];
+
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+
+    console.log(decoded);
+
+    req.user = decoded;
+
+    return next();
+  } catch (err) {
+    return next(); // or return res.status(401).json({ error: "Invalid token" });
+  }
 }
